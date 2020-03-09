@@ -28,7 +28,7 @@ export const fetchInfoCurrency = createAsyncThunk(
 
 		const data = await request.json();
 		for (var i = 0; i < data.length; i++) {
-			if ((data[i].asset_id === 'BTC') || (data[i].asset_id === 'ETH') || (data[i].asset_id === 'USDT') || (data[i].asset_id === 'XRP') || (data[i].asset_id === 'BCH')) {
+			if ((data[i].asset_id === 'BTC') || (data[i].asset_id === 'ETH') || (data[i].asset_id === 'ZEC') || (data[i].asset_id === 'LTC') || (data[i].asset_id === 'BCH')) {
 				dataAssetsInfo5.push(data[i]);
 			}
 		}
@@ -49,7 +49,7 @@ export const fetchLogoCurrency = createAsyncThunk(
 
 		const data = await request.json();
 		for (var i = 0; i < data.length; i++) {
-			if ((data[i].asset_id === 'BTC') || (data[i].asset_id === 'ETH') || (data[i].asset_id === 'USDT') || (data[i].asset_id === 'XRP') || (data[i].asset_id === 'BCH')) {
+			if ((data[i].asset_id === 'BTC') || (data[i].asset_id === 'ETH') || (data[i].asset_id === 'ZEC') || (data[i].asset_id === 'LTC') || (data[i].asset_id === 'BCH')) {
 				dataAssetsLogo5.push(data[i]);
 			}
 		}

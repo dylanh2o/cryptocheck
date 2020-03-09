@@ -31,6 +31,11 @@ const GraphicCrypto = () => {
 					setData(dataTmp);
 				}
 			}
+		}else{
+			const wsConnect = () => {
+				window.websocket = new WebSocket('wss://ws-sandbox.coinapi.io/v1/');
+			};
+			wsConnect();
 		}
 	}, [window.websocket]);
 

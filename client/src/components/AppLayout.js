@@ -14,15 +14,11 @@ const AppLayout = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-
-		console.log('test1');
 		const wsConnect = () => {
 
 			window.websocket = new WebSocket('wss://ws-sandbox.coinapi.io/v1/');
 		};
-
 		wsConnect();
-
 	}, []);
 
 	useEffect(()=>{

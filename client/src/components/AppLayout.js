@@ -6,7 +6,7 @@ import Cryptocurrencies from '../pages/Cryptocurrencies';
 import Exchanges from '../pages/Exchanges';
 import SearchInput from "./SearchInput";
 import {AnimatePresence} from "framer-motion";
-import {fetchInfoCurrency, fetchLogoCurrency, fetchTest} from "../pages/currencySlice";
+import {fetchInfoCurrency, fetchLogoCurrency} from "../pages/currencySlice";
 import {useDispatch} from "react-redux";
 window.websocket= null;
 

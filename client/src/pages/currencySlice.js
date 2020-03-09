@@ -2,7 +2,6 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
 var dataAssetsInfo5 = [];
 var dataAssetsLogo5 = [];
-var dataAssetsTest5 =[];
 var dataAssets5 = [];
 
 //fonction pour fusionner deux tableaux d'objets avec une clé similaire

@@ -11,8 +11,6 @@ const GraphicCrypto = () => {
 
 	useEffect(() => {
 		if (window.websocket !== null) {
-			console.log('test2');
-
 			window.websocket.send(
 				JSON.stringify({
 					type: "hello",

@@ -1,0 +1,74 @@
+27.01.2020
+Choix du projet:
+Application de visualisation des crypto monnaies, en temps réel avec graphiques liée à une API.
+Requis :
+React, WebSocket, API, NodeJS
+
+Choix Api:
+CoinAPI.io - https://www.coinapi.io/
+J'ai choisis cette api car elle a la possibilité d'exploiter le Websocket et elle propose un abonnement gratuit.
+
+28.01.2020
+J'ai téléchargé plusieurs applications de cryptomonnaire pour voir l'aspect et mieux comprendre comment la crypto monnaire fonctionne.
+
+30.01.2020
+Recherche des informations importante a afficher et essayer de les comprendre.
+Crée la premiere maquette sur papier en me basant sur differante applicaion.
+
+03.02.2020
+Recherche et analyse de schéma des courbes sur differente crypto les plus connues(BTC,ETH,LTC,BCH,XRP,...)
+Création d'un site test en react avec antd en me basant de ma maquette papier
+
+04.02.2020
+finalise du site test avec 3 routes(home crypto monnaies et echanges)
+chaque pages à une liste 
+
+06.02.2020
+Chercher comment recevoir les données en websocket
+Premier test de reception des données de l'API recu en websocket 
+
+10.02.2020
+Premier essaye pour les traiter les données que je recoit mais j'ai un probleme d'ajout infini dans mon tableau.
+Des données des changement des valeurs des 5 meuilleur crypto
+
+11.02.2020
+J'ai trouver une solution pour mon tableau mais maintenant j'ai un soucis pour afficher les valeurs dans ma liste.
+
+17.02.2020
+J'ai trouver comment faire pour afficher les valeurs dans la liste. Il fallais mettre les données dans un format tableau d'objet.Mais les valeurs ne s'actualise pas automatiquement.
+
+18.02.2020
+Corrige le code en ajoutant un useEffect pour actualiser automatiquement les valeurs(aide de Max).
+Apres ces changements des erreurs dans le tableau des valeurs qui affichai plus que 1 données.
+Correction des ereurs dans le tableaux.
+
+21.02.2020
+Essaye de recuperer les logo et les informations fixe des crypomonnaie
+J'arrive a recuperer un url ou se situe les informations dans un format JSON
+
+24.02.2020
+Recupere les informations de l'url et les met dans un tableau(du coup tableau de tableau)
+Essaye de les afficher mais ce net pas le bon format
+
+25.02.2020
+Corrige la fonction pour modifier le format du tableau(tableau d'objet)
+Affiche les valeurs dans la listes
+28.02.2020
+Je veux afficher les logo a coté des nom du coup j'essaye mais pas d'idées.Du coup je pense a fusionner les deux tableau avec une key similaire.
+J'ai pas reussi a fusionner correctement les 2 tableaux.
+
+02.03.2020
+J'ai trouve une solution pour la fusion, une fonction sur internet qui fait exactement ce que je recherchais.
+Quelque test de la fonction qui fonctionne mais des fois des petit soucis je doit corriger ces petits soucis
+
+03.03.2020
+Fonction corriger pour cela j'ai trier par asset_id les 2 tableau pour ensuite les fusionner sans erreurs et les trier par nom de crypto.
+Premier test avec redux pour crée une route avec un id.
+Correction de plein de commit Git(pas reussi)
+
+06.03.2020
+Je voulais récuperer mon tableau de ma page cryptocurrency et l'utliser dans une autre page et filtrer avec l'id qui est dans l'url.
+Il fallais utiliser redux pour cela j'ai eu pas mal de peine a configurer mon store avec redux.
+Avec l'aide de Max j'ai reussi a recuperer le tableau, ameliorer mon code et afficher les valeurs en fonction de l'id dans l'url
+09.03.2020
+10.03.2020

@@ -7,37 +7,33 @@ const GraphicCrypto = () => {
 	const currency = useParams().id;
 	const currencyWS = 'GEMINI_SPOT_' + currency + '_USD';
 	const [data, setData] = useState([]);
-	const dataTmp = [...data];
+
 
 	useEffect(() => {
-		if (window.websocket !== null) {
-			window.websocket.send(
-				JSON.stringify({
-					type: "hello",
-					apikey: "F9065291-99B7-44B7-9F3C-4C02D0131B28",
-					"heartbeat": false,
-					"subscribe_data_type": ["quote"],
-					"subscribe_filter_asset_id": [currency]
-				})
-			);
-			window.websocket.onmessage = (message) => {
-				const dataFromServer = JSON.parse(message.data);
-				if (dataFromServer.symbol_id === currencyWS) {
-					if (dataTmp.length === 0) {
-						dataTmp.push(dataFromServer);
-					} else {
-						dataTmp.splice(0, 1, dataFromServer);
-					}
-					setData(dataTmp);
-				}
+		window.websocket.send(
+			JSON.stringify({
+				type: "hello",
+				apikey: "F9065291-99B7-44B7-9F3C-4C02D0131B28",
+				"heartbeat": false,
+				"subscribe_data_type": ["quote"],
+				"subscribe_filter_asset_id": [currency]
+			})
+		);
+		const onMessage = (message) => {
+			const dataFromServer = JSON.parse(message.data);
+			if (dataFromServer.symbol_id === currencyWS) {
+				setData(state=>{
+					const tmp=[...state];
+					tmp.push(dataFromServer);
+					return tmp
+				});
 			}
-		}else{
-			const wsConnect = () => {
-				window.websocket = new WebSocket('wss://ws-sandbox.coinapi.io/v1/');
-			};
-			wsConnect();
+		};
+		window.websocket.addEventListener('message', onMessage);
+		return () => {
+			window.websocket.removeEventListener('message', onMessage);
 		}
-	}, [window.websocket]);
+	}, []);
 
 	const data2 = [
 		{genre: 10000, sold: 1000},

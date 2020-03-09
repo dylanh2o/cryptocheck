@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
 import Home from '../pages/Home';
 import Currency from '../pages/Currency';
@@ -6,29 +6,34 @@ import Cryptocurrencies from '../pages/Cryptocurrencies';
 import Exchanges from '../pages/Exchanges';
 import SearchInput from "./SearchInput";
 import {AnimatePresence} from "framer-motion";
-import {fetchInfoCurrency, fetchLogoCurrency} from "../pages/currencySlice";
+import { fetchInfoCurrency, fetchLogoCurrency} from "../pages/currencySlice";
 import {useDispatch} from "react-redux";
-window.websocket= null;
+
+window.websocket = null;
 
 const AppLayout = () => {
 	const dispatch = useDispatch();
-
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const wsConnect = () => {
 
 			window.websocket = new WebSocket('wss://ws-sandbox.coinapi.io/v1/');
-		};
+			window.websocket.onopen = () => {
+				setLoading(false);
+			};
+				};
 		wsConnect();
 	}, []);
 
-	useEffect(()=>{
+	useEffect(() => {
 		(async () => {
 			await dispatch(fetchInfoCurrency());
 			await dispatch(fetchLogoCurrency());
-		})();
-	},[]);
 
-	return (
+		})();
+	}, []);
+
+	return loading ? 'Loading...':(
 		<>
 			<div className="CadreHeader">
 				<span className="Logo">Crypto Check</span>

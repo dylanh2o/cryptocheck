@@ -6,12 +6,25 @@ import Cryptocurrencies from '../pages/Cryptocurrencies';
 import Exchanges from '../pages/Exchanges';
 import SearchInput from "./SearchInput";
 import {AnimatePresence} from "framer-motion";
-import {fetchInfoCurrency, fetchLogoCurrency} from "../pages/currencySlice";
+import {fetchInfoCurrency, fetchLogoCurrency, fetchTest} from "../pages/currencySlice";
 import {useDispatch} from "react-redux";
-
+window.websocket= null;
 
 const AppLayout = () => {
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+
+		console.log('test1');
+		const wsConnect = () => {
+
+			window.websocket = new WebSocket('wss://ws-sandbox.coinapi.io/v1/');
+		};
+
+		wsConnect();
+
+	}, []);
+
 	useEffect(()=>{
 		(async () => {
 			await dispatch(fetchInfoCurrency());

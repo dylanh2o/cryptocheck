@@ -22,7 +22,7 @@ const ListCrypto = () => {
 
 					</List.Item>
 				)}
-			/>,
+			/>
 		</div>
 	)
 };

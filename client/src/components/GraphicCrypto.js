@@ -3,6 +3,7 @@ import {List} from 'antd';
 import {Chart, Legend, Axis, Tooltip, Geom} from "bizcharts";
 import {useParams} from 'react-router-dom';
 
+
 const GraphicCrypto = () => {
 	const currency = useParams().id;
 	const currencyWS = 'GEMINI_SPOT_' + currency + '_USD';

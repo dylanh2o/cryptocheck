@@ -6,7 +6,7 @@ import Cryptocurrencies from '../pages/Cryptocurrencies';
 import Exchanges from '../pages/Exchanges';
 import SearchInput from "./SearchInput";
 import {AnimatePresence} from "framer-motion";
-import { fetchInfoCurrency, fetchLogoCurrency} from "../pages/currencySlice";
+import {fetchLogoCurrency, fetchInfoCurrency} from "../pages/currencySlice";
 import {useDispatch} from "react-redux";
 
 window.websocket = null;
@@ -21,19 +21,19 @@ const AppLayout = () => {
 			window.websocket.onopen = () => {
 				setLoading(false);
 			};
-				};
+		};
 		wsConnect();
 	}, []);
 
 	useEffect(() => {
 		(async () => {
 			await dispatch(fetchInfoCurrency());
-			await dispatch(fetchLogoCurrency());
+			//await dispatch(fetchLogoCurrency());
 
 		})();
 	}, []);
 
-	return loading ? 'Loading...':(
+	return loading ? 'Loading...' : (
 		<>
 			<div className="CadreHeader">
 				<span className="Logo">Crypto Check</span>

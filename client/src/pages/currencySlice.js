@@ -2,6 +2,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
 var dataAssetsInfo5 = [];
 var dataAssetsLogo5 = [];
+var dataAssetsHistoric5 = [];
 var dataAssets5 = [];
 
 //fonction pour fusionner deux tableaux d'objets avec une clé similaire
@@ -11,7 +12,6 @@ function mergeArrayObjects(arr1, arr2) {
 			//fusionne deux objets
 			return Object.assign({}, item, arr2[i])
 		}
-
 		return null;
 	})
 }
@@ -30,39 +30,53 @@ export const fetchInfoCurrency = createAsyncThunk(
 		for (let i = 0; i < data.length; i++) {
 			if ((data[i].asset_id === 'BTC') || (data[i].asset_id === 'ETH') || (data[i].asset_id === 'ZEC') || (data[i].asset_id === 'LTC') || (data[i].asset_id === 'BCH')) {
 				dataAssetsInfo5.push(data[i]);
+
 			}
+
 		}
-
-		dataAssetsInfo5.sort((a, b) => (a.asset_id > b.asset_id) ? 1 : -1);
-		return dataAssetsInfo5;
-
-	}
-);
-
-export const fetchLogoCurrency = createAsyncThunk(
-	'cryptocurrencies/fetchLogoCurrency',
-	async () => {
-		dataAssetsLogo5 = [];
-//recuperer toutes les logo des crypto
+		//dataAssetsLogo5 = [];
+//recuperer tout les logo des crypto
 		const requestLogo = await fetch('https://rest.coinapi.io/v1/assets/icons/{12px}', {
 			method: 'GET',
 			headers: {'X-CoinAPI-Key': 'F9065291-99B7-44B7-9F3C-4C02D0131B28'}
 		});
 
-		const data = await requestLogo.json();
-		for (var i = 0; i < data.length; i++) {
-			if ((data[i].asset_id === 'BTC') || (data[i].asset_id === 'ETH') || (data[i].asset_id === 'ZEC') || (data[i].asset_id === 'LTC') || (data[i].asset_id === 'BCH')) {
-				dataAssetsLogo5.push(data[i]);
+		const dataLogo = await requestLogo.json();
+		for (let i = 0; i < data.length; i++) {
+			if ((dataLogo[i].asset_id === 'BTC') || (dataLogo[i].asset_id === 'ETH') || (dataLogo[i].asset_id === 'ZEC') || (dataLogo[i].asset_id === 'LTC') || (dataLogo[i].asset_id === 'BCH')) {
+				dataAssetsLogo5.push(dataLogo[i]);
+
 			}
 		}
-
+		console.log('sd');
+		dataAssetsInfo5.sort((a, b) => (a.asset_id > b.asset_id) ? 1 : -1);
 		dataAssetsLogo5.sort((a, b) => (a.asset_id > b.asset_id) ? 1 : -1);
 		dataAssets5 = (mergeArrayObjects(dataAssetsInfo5, dataAssetsLogo5));
 		dataAssets5.sort((a, b) => (a.name > b.name) ? 1 : -1);
+
 		return dataAssets5;
 	}
 );
 
+
+/*
+export const fetchHistoricCurrency = createAsyncThunk(
+	'cryptocurrencies/fetchHistoricCurrency',
+	async () => {
+//recuperer toutes les logo des crypto
+		const requestHistoric = await fetch('https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?period_id=1DAY&time_start=1900-01-01T00:00:00&limit=100000', {
+			method: 'GET',
+			headers: {'X-CoinAPI-Key': 'F9065291-99B7-44B7-9F3C-4C02D0131B28'}
+		});
+		const data = await requestHistoric.json();
+			dataAssetsHistoric5.push(data);
+		console.log(dataAssetsHistoric5);
+		return dataAssetsHistoric5;
+	}
+);
+
+
+ */
 export const currencySlice = createSlice({
 	name: 'currency',
 	initialState: {
@@ -86,23 +100,6 @@ export const currencySlice = createSlice({
 			}
 		},
 		[fetchInfoCurrency.rejected]: (state, action) => {
-			if (state.state === 'loading') {
-				state.state = 'error';
-				state.error = action.error.message;
-
-			}
-		}, [fetchLogoCurrency.pending]: (state, action) => {
-			if (state.state !== 'loading') {
-				state.state = 'loading';
-			}
-		},
-		[fetchLogoCurrency.fulfilled]: (state, action) => {
-			if (state.state === 'loading') {
-				state.state = 'ready';
-				state.currency = action.payload;
-			}
-		},
-		[fetchLogoCurrency.rejected]: (state, action) => {
 			if (state.state === 'loading') {
 				state.state = 'error';
 				state.error = action.error.message;

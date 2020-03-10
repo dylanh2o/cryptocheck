@@ -34,7 +34,7 @@ const InfoCrypto = () => {
 						Prix: {Math.round(item.price_usd)} usd - {Math.round(item.price_usd/1.06751)} CHF
 					</List.Item>
 				)}
-			/>,
+			/>
 		</div>
 	)
 };

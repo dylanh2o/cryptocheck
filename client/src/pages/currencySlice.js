@@ -2,7 +2,6 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
 var dataAssetsInfo5 = [];
 var dataAssetsLogo5 = [];
-var dataAssetsHistoric5 = [];
 var dataAssets5 = [];
 
 //fonction pour fusionner deux tableaux d'objets avec une clé similaire
@@ -42,13 +41,13 @@ export const fetchInfoCurrency = createAsyncThunk(
 		});
 
 		const dataLogo = await requestLogo.json();
-		for (let i = 0; i < data.length; i++) {
+		for (let i = 0; i < dataLogo.length; i++) {
 			if ((dataLogo[i].asset_id === 'BTC') || (dataLogo[i].asset_id === 'ETH') || (dataLogo[i].asset_id === 'ZEC') || (dataLogo[i].asset_id === 'LTC') || (dataLogo[i].asset_id === 'BCH')) {
 				dataAssetsLogo5.push(dataLogo[i]);
 
 			}
 		}
-		console.log('sd');
+
 		dataAssetsInfo5.sort((a, b) => (a.asset_id > b.asset_id) ? 1 : -1);
 		dataAssetsLogo5.sort((a, b) => (a.asset_id > b.asset_id) ? 1 : -1);
 		dataAssets5 = (mergeArrayObjects(dataAssetsInfo5, dataAssetsLogo5));
@@ -58,25 +57,6 @@ export const fetchInfoCurrency = createAsyncThunk(
 	}
 );
 
-
-/*
-export const fetchHistoricCurrency = createAsyncThunk(
-	'cryptocurrencies/fetchHistoricCurrency',
-	async () => {
-//recuperer toutes les logo des crypto
-		const requestHistoric = await fetch('https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?period_id=1DAY&time_start=1900-01-01T00:00:00&limit=100000', {
-			method: 'GET',
-			headers: {'X-CoinAPI-Key': 'F9065291-99B7-44B7-9F3C-4C02D0131B28'}
-		});
-		const data = await requestHistoric.json();
-			dataAssetsHistoric5.push(data);
-		console.log(dataAssetsHistoric5);
-		return dataAssetsHistoric5;
-	}
-);
-
-
- */
 export const currencySlice = createSlice({
 	name: 'currency',
 	initialState: {
@@ -110,8 +90,6 @@ export const currencySlice = createSlice({
 	}
 });
 
-
-export const getCryptocurrenciesCurrencys = state => state.currency.currency;
 
 
 

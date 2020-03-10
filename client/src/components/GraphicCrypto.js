@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {List} from 'antd';
 import {Chart, Legend, Axis, Tooltip, Geom} from "bizcharts";
 import {useParams} from 'react-router-dom';
-
+import {useSelector,useDispatch} from "react-redux";
+import {hydrateRealTimeCurrency} from "../pages/realTimeSlice";
 
 const GraphicCrypto = () => {
+	const dispatch= useDispatch();
 	const currency = useParams().id;
 	const currencyWS = 'GEMINI_SPOT_' + currency + '_USD';
-	const [data, setData] = useState([]);
 
+
+const data = useSelector(state=>state.historic[currency]);
 
 	useEffect(() => {
 		window.websocket.send(
@@ -23,11 +26,15 @@ const GraphicCrypto = () => {
 		const onMessage = (message) => {
 			const dataFromServer = JSON.parse(message.data);
 			if (dataFromServer.symbol_id === currencyWS) {
+				dispatch(hydrateRealTimeCurrency({currency, data: dataFromServer}))
+				/*
 				setData(state=>{
 					const tmp=[...state];
 					tmp.push(dataFromServer);
 					return tmp
 				});
+
+				 */
 			}
 		};
 		window.websocket.addEventListener('message', onMessage);

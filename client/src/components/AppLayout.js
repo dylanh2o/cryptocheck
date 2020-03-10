@@ -6,8 +6,9 @@ import Cryptocurrencies from '../pages/Cryptocurrencies';
 import Exchanges from '../pages/Exchanges';
 import SearchInput from "./SearchInput";
 import {AnimatePresence} from "framer-motion";
-import {fetchLogoCurrency, fetchInfoCurrency} from "../pages/currencySlice";
+import { fetchInfoCurrency} from "../pages/currencySlice";
 import {useDispatch} from "react-redux";
+import {fetchHistoricCurrency} from "../pages/historicSlice";
 
 window.websocket = null;
 
@@ -28,7 +29,7 @@ const AppLayout = () => {
 	useEffect(() => {
 		(async () => {
 			await dispatch(fetchInfoCurrency());
-			//await dispatch(fetchLogoCurrency());
+			await dispatch(fetchHistoricCurrency());
 
 		})();
 	}, []);

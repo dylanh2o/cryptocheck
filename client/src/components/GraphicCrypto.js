@@ -107,7 +107,6 @@ const GraphicCrypto = () => {
 	return (
 		<div>
 			<CanvasJSChart options = {options}
-				/* onRef={ref => this.chart = ref} */
 			/>
 		</div>
 

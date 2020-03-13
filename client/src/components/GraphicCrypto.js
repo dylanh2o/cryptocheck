@@ -1,10 +1,13 @@
 import React, {useEffect} from 'react';
-import {Chart, Legend, Axis, Tooltip, Geom} from "bizcharts";
 import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
 import {hydrateRealTimeCurrency} from "../pages/realTimeSlice";
 import {fetchHistoricCurrency} from "../pages/historicSlice";
 
+import CanvasJSReact from './canvasjs.react';
+
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const GraphicCrypto = () => {
 	const dispatch = useDispatch();
 	const currency = useParams().id;
@@ -41,16 +44,16 @@ const GraphicCrypto = () => {
 		}
 	}, []);
 
-useEffect(()=>{
-	for (let i = 0; i < data2.length; i++) {
+	useEffect(() => {
+		for (let i = 0; i < data2.length; i++) {
 
-		var dateTMP = data2[i].time_period_start;
-		var priceTMP = data2[i].price;
-		var dataObject = {["date"]: dateTMP.substr(0, 10), ["price"]: priceTMP};
-		dataTMP.push(dataObject);
+			var dateTMP = data2[i].time_period_start;
+			var priceTMP = data2[i].price;
+			var dataObject = {["date"]: dateTMP.substr(0, 10), ["price"]: priceTMP};
+			dataTMP.push(dataObject);
 
-	}
-},[]);
+		}
+	}, []);
 
 	const data2 = [
 
@@ -69,46 +72,43 @@ useEffect(()=>{
 
 	];
 
-	const cols = {
-		date: {
-			alias: "Date"
+
+	console.log(dataTMP);
+
+
+	const options = {
+		theme: "light2",
+		animationEnabled: true,
+		exportEnabled: true,
+		title: {
+			text: "Number of iPhones Sold"
 		},
-		price: {
-			alias: currency
-		}
+		axisY: {
+			title: "Number of iPhones ( in Million )",
+			includeZero: false,
+		},
+		data: [
+			{
+				type: "area",
+				xValueFormatString: "YYYY",
+				yValueFormatString: "#,##0.## Million",
+				dataPoints: [
+					{x: new Date(2017, 0), y: 7.6},
+					{x: new Date(2016, 0), y: 7.3},
+					{x: new Date(2015, 0), y: 6.4},
+					{x: new Date(2014, 0), y: 5.3},
+					{x: new Date(2013, 0), y: 4.5},
+					{x: new Date(2012, 0), y: 3.8},
+					{x: new Date(2011, 0), y: 3.2}
+				]
+			}
+		]
 	};
-console.log(dataTMP);
 	return (
 		<div>
-			<Chart height={400} data={dataTMP} scale={cols} >
-				<Axis
-					name="date"
-					title={null}
-					tickLine={null}
-					line={{
-						stroke: "#E6E6E6"
-					}}
-				/>
-				<Axis
-					name="price"
-					line={false}
-					tickLine={null}
-					grid={null}
-					title={null}
-				/>
-				<Tooltip/>
-				<Geom
-					type="line"
-					position="date*price"
-					size={1}
-					shape="smooth"
-					style={{
-						shadowColor: "l (270) 0:rgba(21, 146, 255, 0)",
-						shadowBlur: 60,
-						shadowOffsetY: 6
-					}}
-				/>
-			</Chart>
+			<CanvasJSChart options = {options}
+				/* onRef={ref => this.chart = ref} */
+			/>
 		</div>
 
 

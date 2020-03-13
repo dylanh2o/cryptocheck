@@ -22,7 +22,7 @@ export const fetchInfoCurrency = createAsyncThunk(
 //recuperer toutes les info des crypto
 		const request = await fetch('https://rest.coinapi.io/v1/assets', {
 			method: 'GET',
-			headers: {'X-CoinAPI-Key': 'F9065291-99B7-44B7-9F3C-4C02D0131B28'}
+			headers: {'X-CoinAPI-Key': 'C09420D1-71FE-48D4-AFB8-5B1E33F55442'}
 		});
 
 		const data = await request.json();
@@ -37,7 +37,7 @@ export const fetchInfoCurrency = createAsyncThunk(
 //recuperer tout les logo des crypto
 		const requestLogo = await fetch('https://rest.coinapi.io/v1/assets/icons/{12px}', {
 			method: 'GET',
-			headers: {'X-CoinAPI-Key': 'F9065291-99B7-44B7-9F3C-4C02D0131B28'}
+			headers: {'X-CoinAPI-Key': 'C09420D1-71FE-48D4-AFB8-5B1E33F55442'}
 		});
 
 		const dataLogo = await requestLogo.json();

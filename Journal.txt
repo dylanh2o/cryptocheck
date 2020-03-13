@@ -1,4 +1,4 @@
-27.01.2020
+﻿27.01.2020
 Choix du projet:
 Application de visualisation des crypto monnaies, en temps r�el avec graphiques li�e � une API.
 Requis :
@@ -74,3 +74,8 @@ Avec l'aide de Max j'ai reussi a recuperer le tableau, ameliorer mon code et aff
 J'ai regardé le module BizCharts il sert a ajouter des graphiques(tableaux, schémas, ...). Il es top meme si la documentation et moitié en anglais moitié en chinois.
 Je l'ai intergré à mon site et j'ai commencer a faire des test avec les données et different graphique.
 10.03.2020
+Fusion des fonction pour recuprer les info et les logo.
+test avec bizCharts pour  les valeurs a mettre ele type de tableau.
+integration des données web socket dans le store redux.
+integration de l'historic des crypto dans le store redux.
+probleme avec ma clé api quand jeffectue mes requete d historic

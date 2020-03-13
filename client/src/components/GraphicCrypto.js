@@ -1,19 +1,25 @@
 import React, {useEffect} from 'react';
-import {List} from 'antd';
 import {Chart, Legend, Axis, Tooltip, Geom} from "bizcharts";
 import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
 import {hydrateRealTimeCurrency} from "../pages/realTimeSlice";
+import {fetchHistoricCurrency} from "../pages/historicSlice";
 
 const GraphicCrypto = () => {
 	const dispatch = useDispatch();
 	const currency = useParams().id;
 	const currencyWS = 'GEMINI_SPOT_' + currency + '_USD';
-
-
 	const data = useSelector(state => state.historic[currency]);
+	const dataTMP = [];
+	useEffect(() => {
+		(async () => {
+			await dispatch(fetchHistoricCurrency(currency));
+		})();
+	}, []);
+
 
 	useEffect(() => {
+
 		window.websocket.send(
 			JSON.stringify({
 				type: "hello",
@@ -35,62 +41,48 @@ const GraphicCrypto = () => {
 		}
 	}, []);
 
+useEffect(()=>{
+	for (let i = 0; i < data2.length; i++) {
+
+		var dateTMP = data2[i].time_period_start;
+		var priceTMP = data2[i].price;
+		var dataObject = {["date"]: dateTMP.substr(0, 10), ["price"]: priceTMP};
+		dataTMP.push(dataObject);
+
+	}
+},[]);
+
 	const data2 = [
+
 		{
-			month: "2011-01-01",
-			price: 84.0
+			time_period_start: "2011-09-13T8739734",
+			price: 6
 		},
 		{
-			month: "2012-02-01",
-			price: 14.9
+			time_period_start: "2011-09-14T44545",
+			price: 14
 		},
 		{
-			month: "2013-03-01",
-			price: 17.0
-		},
-		{
-			month: "2014-04-01",
-			price: 20.2
-		},
-		{
-			month: "2015-05-01",
-			price: 55.6
-		},
-		{
-			month: "2016-06-01",
-			price: 56.7
-		},
-		{
-			month: "2017-07-01",
-			price: 30.6
-		},
-		{
-			month: "2018-08-01",
-			price: 63.2
-		},
-		{
-			month: "2019-09-01",
-			price: 24.6
-		},
-		{
-			month: "2020-10-01",
-			price: 14.0
+			time_period_start: "2011-09-15T343",
+			price: 17
 		}
+
 	];
+
 	const cols = {
-		month: {
+		date: {
 			alias: "Date"
 		},
 		price: {
-			alias: {currency}
+			alias: currency
 		}
 	};
-
+console.log(dataTMP);
 	return (
 		<div>
-			<Chart height={400} data={data2} scale={cols} >
+			<Chart height={400} data={dataTMP} scale={cols} >
 				<Axis
-					name="month"
+					name="date"
 					title={null}
 					tickLine={null}
 					line={{
@@ -98,18 +90,17 @@ const GraphicCrypto = () => {
 					}}
 				/>
 				<Axis
-					name={currency}
+					name="price"
 					line={false}
 					tickLine={null}
 					grid={null}
 					title={null}
 				/>
-				<Tooltip />
+				<Tooltip/>
 				<Geom
 					type="line"
-					position="month*acc"
+					position="date*price"
 					size={1}
-					color="l (270) 0:rgba(255, 146, 255, 1) .5:rgba(100, 268, 255, 1) 1:rgba(215, 0, 255, 1)"
 					shape="smooth"
 					style={{
 						shadowColor: "l (270) 0:rgba(21, 146, 255, 0)",
@@ -119,7 +110,6 @@ const GraphicCrypto = () => {
 				/>
 			</Chart>
 		</div>
-
 
 
 	)

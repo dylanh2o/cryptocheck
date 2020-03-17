@@ -7,13 +7,20 @@ import CanvasJSReact from './canvasjs.react';
 
 const dataPoints = [];
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-const dataTmp = [];
 const GraphicCryptoRealTime = () => {
 	const dispatch = useDispatch();
 	const currency = useParams().id;
 	const currencyWS = 'GEMINI_SPOT_' + currency + '_USD';
-	const data = useSelector(state => state.realTime[currency]);
+	const data = [];
+	data["BTC"] = [];
+	data["BCH"] = [];
+	data["ETH"] = [];
+	data["ZEC"] = [];
+	data["LTC"] = [];
+	data[currency] = useSelector(state => state.realTime[currency]);
 
+	console.log(data);
+	console.log(dataPoints);
 	useEffect(() => {
 
 		window.websocket.send(
@@ -39,29 +46,36 @@ const GraphicCryptoRealTime = () => {
 		}
 	}, []);
 	useEffect(() => {
-		(async () => {
-			for (let i = 0; i < data.length; i++) {
 
-				var dateTMP = data[i].time_exchange;
-				var priceTMP = data[i].ask_price;
-				console.log(priceTMP);
-				var dataObject = {["x"]: new Date(dateTMP.substr(0, 10)), ["y"]: priceTMP};
+		for (let i = 0; i < data[currency].length; i++) {
+			let priceTMP = data[currency][i].ask_price;
+			let date = data[currency][i].time_exchange;
+			let formatDate = date.substr(0, 11);
+			let formatHeure = Number(date.substr(11, 2)) + 1;
+			let formatMS = date.substr(13, 6);
+			let dateTMP = formatDate + formatHeure + formatMS;
+			var dataObject = {["x"]: new Date(dateTMP), ["y"]: priceTMP};
+			if (dataPoints.length < 100) {
 				dataPoints.push(dataObject);
-				console.log(options.data[0].dataPoints);
+			} else {
+				dataPoints.splice(0, 1);
+				dataPoints.push(dataObject);
 			}
-		})();
-	}, []);
+		}
+		console.log(dataPoints);
+
+	},);
 
 
 	let current_datetime = new Date();
-	let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
+	let formatted_date = current_datetime.getDate() + "." + (current_datetime.getMonth() + 1) + "." + current_datetime.getFullYear() + " " + current_datetime.getHours() + ":"+ current_datetime.getMinutes() ;
 
 	const options = {
-		theme: "light2", // "light1", "light2", "dark1", "dark2"
+		theme: "light1",
 		animationEnabled: true,
 		exportEnabled: true,
 		title: {
-			text: "Graphique BTC/USD (" + formatted_date + ")"
+			text: "Graphique " + currency + "/USD (" + formatted_date + ")"
 		},
 		axisX: {
 			valueFormatString: "DD-MM-YY HH:mm:ss"

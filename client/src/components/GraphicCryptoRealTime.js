@@ -12,11 +12,6 @@ const GraphicCryptoRealTime = () => {
 	const currency = useParams().id;
 	const currencyWS = 'GEMINI_SPOT_' + currency + '_USD';
 	const data = [];
-	data["BTC"] = [];
-	data["BCH"] = [];
-	data["ETH"] = [];
-	data["ZEC"] = [];
-	data["LTC"] = [];
 	data[currency] = useSelector(state => state.realTime[currency]);
 
 	console.log(data);
@@ -55,6 +50,7 @@ const GraphicCryptoRealTime = () => {
 			let formatMS = date.substr(13, 6);
 			let dateTMP = formatDate + formatHeure + formatMS;
 			var dataObject = {["x"]: new Date(dateTMP), ["y"]: priceTMP};
+
 			if (dataPoints.length < 100) {
 				dataPoints.push(dataObject);
 			} else {
@@ -86,7 +82,7 @@ const GraphicCryptoRealTime = () => {
 			title: "Price (in USD)"
 		},
 		data: [{
-			type: "line",
+			type: "spline",
 			showInLegend: true,
 			name: currency,
 			yValueFormatString: "$###0.00",

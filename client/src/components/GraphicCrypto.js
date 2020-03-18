@@ -3394,17 +3394,8 @@ const data=useSelector(state => state.historic.historic);
 		})();
 	}, []);
 
-
-	useEffect(() => {
-
-	}, []);
-
-
-
-
-
 	const options = {
-		theme: "light1", // "light1", "light2", "dark1", "dark2"
+		theme: "light1",
 		animationEnabled: true,
 		exportEnabled: true,
 		title: {

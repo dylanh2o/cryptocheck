@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
-import {fetchHistoricCurrency} from "../pages/historicSlice";
+import {fetchHistoric1MCurrency} from "../pages/historic1MSlice";
 import CanvasJSReact from './canvasjs.react';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -10,13 +10,13 @@ const GraphicCrypto = () => {
 
 	const dispatch = useDispatch();
 	const currency = useParams().id;
-	const data = useSelector(state => state.historic.historic);
+	const data = useSelector(state => state.historic1M.historic);
 	const options = {
 		theme: "light1",
 		animationEnabled: true,
 		exportEnabled: true,
 		title: {
-			text: currency + "/USD (all time)"
+			text: currency + "/USD (1 Month)"
 		},
 		axisX: {
 			valueFormatString: "DD-MM-YY"
@@ -40,7 +40,7 @@ const GraphicCrypto = () => {
 	useEffect(() => {
 		(async () => {
 			let dataPoints = [];
-			await dispatch(fetchHistoricCurrency(currency));
+			await dispatch(fetchHistoric1MCurrency(currency));
 
 			for (let i = 0; i < data.length; i++) {
 				var dateTMP = data[i].time_period_start;

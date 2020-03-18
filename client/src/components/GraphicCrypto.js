@@ -3381,7 +3381,7 @@ const data=useSelector(state => state.historic.historic);
 	useEffect(() => {
 		(async () => {
 
-			//await dispatch(fetchHistoricCurrency(currency));
+			await dispatch(fetchHistoricCurrency(currency));
 
 			for (let i = 0; i < data2.length; i++) {
 				var dateTMP = data2[i].time_period_start;
@@ -3393,6 +3393,10 @@ const data=useSelector(state => state.historic.historic);
 //			console.log(options.data[0].dataPoints);
 		})();
 	}, []);
+
+
+
+
 
 	const options = {
 		theme: "light1",

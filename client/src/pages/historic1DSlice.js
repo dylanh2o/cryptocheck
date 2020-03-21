@@ -7,10 +7,19 @@ export const fetchHistoric1DCurrency = createAsyncThunk(
 
 		var date=new Date();
 		date.setDate(date.getDate()-1);
-		let formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+		let day=date.getDate();
+		let month=date.getMonth() + 1;
+		if (day<10){
+			day="0"+day;
+		}
+		if (month<10){
+			month="0"+month;
+		}
+		let formattedDate = date.getFullYear() + "-" + month + "-" + day;
+console.log(formattedDate);
 
 
-		const requestHistoric = await fetch('https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_' + currency + '_USD/history?period_id=30MIN&time_start='+formattedDate+'T00:00:00&limit=10', {
+		const requestHistoric = await fetch('https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_' + currency + '_USD/history?period_id=30MIN&time_start='+formattedDate+'T00:00:00&limit=10000', {
 			method: 'GET',
 			headers: {'X-CoinAPI-Key': 'C09420D1-71FE-48D4-AFB8-5B1E33F55442'}
 		});

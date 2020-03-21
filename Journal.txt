@@ -70,12 +70,42 @@ Correction de plein de commit Git(pas reussi)
 Je voulais r�cuperer mon tableau de ma page cryptocurrency et l'utliser dans une autre page et filtrer avec l'id qui est dans l'url.
 Il fallais utiliser redux pour cela j'ai eu pas mal de peine a configurer mon store avec redux.
 Avec l'aide de Max j'ai reussi a recuperer le tableau, ameliorer mon code et afficher les valeurs en fonction de l'id dans l'url
+
 09.03.2020
 J'ai regardé le module BizCharts il sert a ajouter des graphiques(tableaux, schémas, ...). Il es top meme si la documentation et moitié en anglais moitié en chinois.
 Je l'ai intergré à mon site et j'ai commencer a faire des test avec les données et different graphique.
+
 10.03.2020
 Fusion des fonction pour recuprer les info et les logo.
 test avec bizCharts pour  les valeurs a mettre ele type de tableau.
 integration des données web socket dans le store redux.
 integration de l'historic des crypto dans le store redux.
-probleme avec ma clé api quand jeffectue mes requete d historic
+probleme avec ma clé api quand jeffectue mes requete d historiques
+
+13.03.2020
+Changement d'api pour les graphiques, bizchartes me semblais pas mal mais la documentation en chinois et le manque de tuto sur internet mon pousser vers canavasJS. J'ai commencer les test avec cette api je la trouve bien plus simple et la doc est complète.
+j'ai commencer  a mettre des valeurs et des dates en dur pour voir si tout s'affiche comme il le faut avant de prendre les données de mon store redux. pour les probleme d'api jai mis moins de requete a recuperer.
+
+16.03.2020-17.03.2020
+ces deux jours j'ai pas avancer mon projet car j'ai plusierus problemes comme:
+-pour actualiser mon graphique(now) toutes les secondes car il y a des fois des valeurs dans la meme seconde et cela foire le graphique et un set interval ou timeout ne fonctionne pas
+-ou aussi vider le tableau dataPoints une fois la page changer(de BTC a ETH).
+-ou pourquoi mon graphique(now) a des trait en plus au début 
+-pour recuperer l'historique quand je reçoit le vrai tableau et non un tableau en dur data est vide.
+
+j'ai essayer de corriger ces erreur 1 par 1 avec plusierus test mais envain.
+
+18.03.2020
+Toujours les meme problèmes depuis le 16 mais apres avoir reçu de l'aide de Max tous a été corriger.
+mon graphique en temps reel na plus de trait en plus au debut, mon dataPoints se vide une fois la currency changé et je recoit bel et bien data(all time) et arrive a l'afficher avec canvasJS
+Apres avoir reussi a avancer jai commencer a crée chaque slice et chaque composant pour chaque type de graphique(now, 1 jours, 7 jours, 1 mois 1 an et all time).Apres avoir crée chaque graphique je mis en place "un tabs" une sorte de cadre avec plusierus onglets pour afficher mes graphiques 1 par 1 sous la bonne categorie.
+j'ai eu quelque erreur de copier coller vite fait corrigé
+
+20.03.2020
+Ensuite je me suis mis a adapter chaque requete en fonction de son type donc si c'est 1 mois je recupere des donne depuis  1 mois a aujourdhui(du 20.02.2020 au 20.03.2020).
+Plusieurs requetes ne passait par car ma fonction qui retournais les dates retournais des simple chiffre et l'api demande des nombre du coup j'ai crée une fonction qui ajoute un 0 si c'est un chiffre(donc 5 passera a 05, 7 a 07 ainsi de suite)
+Apres avoir fait toutes les requetes je doit verifier que je recoit bien le bon historique avec les bonne dates. j'ai decider de limiter toutes mes requetes a 10 sauf une pour voir les resultat complet je la limite a 10000 et ensuite de faire de meme avec toutes les autres requete. J'ai verifier la requete all time mais apres cette verification mon api a ateint sa limite max du coup les autres test se feront une prochaine fois.
+
+22.03.2020
+23.03.2020
+24.03.2020

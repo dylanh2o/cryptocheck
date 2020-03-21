@@ -22,7 +22,7 @@ const Currency = () => {
 			<>
 				<h1>Currency</h1>
 					<InfoCrypto/>
-<tabsGraphic/>
+
 				<div>
 
 					<Tabs defaultActiveKey="1" size="large">

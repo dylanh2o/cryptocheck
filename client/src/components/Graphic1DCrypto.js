@@ -10,7 +10,7 @@ const GraphicCrypto = () => {
 
 	const dispatch = useDispatch();
 	const currency = useParams().id;
-	const data = useSelector(state => state.historic.historic);
+	const data = useSelector(state => state.historic1D.historic);
 	const options = {
 		theme: "light1",
 		animationEnabled: true,
@@ -45,7 +45,7 @@ const GraphicCrypto = () => {
 			for (let i = 0; i < data.length; i++) {
 				var dateTMP = data[i].time_period_start;
 				var priceTMP = data[i].price_high;
-				var dataObject = {["x"]: new Date(dateTMP.substr(0, 10)), ["y"]: priceTMP};
+				var dataObject = {["x"]: new Date(dateTMP.substr(0, 16)), ["y"]: priceTMP};
 				dataPoints.push(dataObject);
 			}
 			const tmp = {...options};

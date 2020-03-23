@@ -4,10 +4,10 @@ import {createBrowserHistory} from 'history'
 import currencySlice from './pages/currencySlice';
 import realTimeSlice from './pages/realTimeSlice';
 import historicSlice from './pages/historicSlice';
-import historic1DSlice from './pages/historicSlice';
-import historic7DSlice from './pages/historicSlice';
-import historic1MSlice from './pages/historicSlice';
-import historic1YSlice from './pages/historicSlice';
+import historic1DSlice from './pages/historic1DSlice';
+import historic7DSlice from './pages/historic7DSlice';
+import historic1MSlice from './pages/historic1MSlice';
+import historic1YSlice from './pages/historic1YSlice';
 
 const reducers = history => combineReducers({
 	router: connectRouter(history),

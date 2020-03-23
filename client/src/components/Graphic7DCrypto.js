@@ -19,7 +19,7 @@ const GraphicCrypto = () => {
 			text: currency + "/USD (7 Days)"
 		},
 		axisX: {
-			valueFormatString: "DD-MM-YY"
+			valueFormatString: "DD-MM-YY  hh:mm"
 		},
 		axisY: {
 			includeZero: false,
@@ -31,7 +31,7 @@ const GraphicCrypto = () => {
 			showInLegend: true,
 			name: currency,
 			yValueFormatString: "$###0.00",
-			xValueFormatString: "DD-MM-YY",
+			xValueFormatString: "DD-MM-YY  hh:mm",
 			dataPoints: []
 		}
 		]
@@ -45,7 +45,7 @@ const GraphicCrypto = () => {
 			for (let i = 0; i < data.length; i++) {
 				var dateTMP = data[i].time_period_start;
 				var priceTMP = data[i].price_high;
-				var dataObject = {["x"]: new Date(dateTMP.substr(0, 10)), ["y"]: priceTMP};
+				var dataObject = {["x"]: new Date(dateTMP.substr(0, 16)), ["y"]: priceTMP};
 				dataPoints.push(dataObject);
 			}
 			const tmp = {...options};

@@ -19,7 +19,7 @@ const GraphicCrypto = () => {
 			text: currency + "/USD (1 Day)"
 		},
 		axisX: {
-			valueFormatString: "DD-MM-YY"
+			valueFormatString: "DD-MM-YY hh:mm"
 		},
 		axisY: {
 			includeZero: false,
@@ -31,7 +31,7 @@ const GraphicCrypto = () => {
 			showInLegend: true,
 			name: currency,
 			yValueFormatString: "$###0.00",
-			xValueFormatString: "DD-MM-YY",
+			xValueFormatString: "DD-MM-YY hh:mm",
 			dataPoints: []
 		}
 		]

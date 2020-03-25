@@ -11,7 +11,6 @@ const GraphicCryptoRealTime = () => {
 	const currency = useParams().id;
 	const currencyWS = 'GEMINI_SPOT_' + currency + '_USD';
 	const data = useSelector(state => state.realTime[currency]);
-
 	useEffect(() => {
 
 		window.websocket.send(
@@ -20,14 +19,15 @@ const GraphicCryptoRealTime = () => {
 				apikey: "C09420D1-71FE-48D4-AFB8-5B1E33F55442",
 				"heartbeat": false,
 				"subscribe_data_type": ["quote"],
-				"subscribe_filter_asset_id": [currency]
+				"subscribe_filter_asset_id": ['USD']
 			})
 		);
 		const onMessage = (message) => {
+			console.log(message.data);
 			const dataFromServer = JSON.parse(message.data);
 			if (dataFromServer.symbol_id === currencyWS) {
 
-				dispatch(hydrateRealTimeCurrency({currency, data: dataFromServer}))
+				 dispatch(hydrateRealTimeCurrency({currency, data: dataFromServer}))
 
 			}
 		};

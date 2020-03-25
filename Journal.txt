@@ -106,6 +106,13 @@ Ensuite je me suis mis a adapter chaque requete en fonction de son type donc si 
 Plusieurs requetes ne passait par car ma fonction qui retournais les dates retournais des simple chiffre et l'api demande des nombre du coup j'ai crée une fonction qui ajoute un 0 si c'est un chiffre(donc 5 passera a 05, 7 a 07 ainsi de suite)
 Apres avoir fait toutes les requetes je doit verifier que je recoit bien le bon historique avec les bonne dates. j'ai decider de limiter toutes mes requetes a 10 sauf une pour voir les resultat complet je la limite a 10000 et ensuite de faire de meme avec toutes les autres requete. J'ai verifier la requete all time mais apres cette verification mon api a ateint sa limite max du coup les autres test se feront une prochaine fois.
 
-22.03.2020
 23.03.2020
+Mes graphiques sauf "All time" ont une erreur il ne passe passe en ready sauf quand "All time" est choisit. Une fios en ready il prennent les valeurs du mauavais historique. Max ma aidé a trouver la fautes il s'aggissait d'une erreur de copier coller dans le store. Je chargais toujours le meme graphiques.
+
+Mes graphiques Fonctionne tous correctement.
+
 24.03.2020
+Vers 15h30, après/peandant les cours j'ai eu un problème internet
+
+25.03.2020
+Correction de mon problème réseau. Apres avoir recuperer ma connexion je lance mon site et le graphique BTC en temps reel ne fonctionne plus. J'ai verifier je ne recoit plus de données a propos du BTC. Apres plusieurs test je n'ai pas toujours trouvé le problemes.

@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from "./page";
-import './Cryptocurrencies.css';
+import './Currency.css';
 import InfoCrypto from "../components/InfoCrypto";
 import GraphicCrypto from "../components/GraphicCrypto";
 import GraphicCryptoRealTime from "../components/GraphicCryptoRealTime";
@@ -8,11 +8,12 @@ import Graphic1DCrypto from "../components/Graphic1DCrypto";
 import Graphic7DCrypto from "../components/Graphic7DCrypto";
 import Graphic1MCrypto from "../components/Graphic1MCrypto";
 import Graphic1YCrypto from "../components/Graphic1YCrypto";
-import { Tabs } from 'antd';
+import {Tabs} from 'antd';
 
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 const Currency = () => {
+
 
 
 	return (
@@ -20,9 +21,10 @@ const Currency = () => {
 
 		<Page>
 			<>
-				<h1>Currency</h1>
-					<InfoCrypto/>
 
+				<div className="center">
+					<InfoCrypto/>
+				</div>
 				<div>
 
 					<Tabs defaultActiveKey="1" size="large">
@@ -48,12 +50,6 @@ const Currency = () => {
 
 					</Tabs>
 				</div>
-
-
-
-
-
-
 
 
 			</>

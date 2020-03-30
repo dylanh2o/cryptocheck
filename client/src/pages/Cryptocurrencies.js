@@ -13,7 +13,7 @@ const Cryptocurrencies = () => {
 
 		<Page>
 			<h1>Cryptocurrencies</h1>
-			<div>
+			<div className="center">
 				<ListCrypto/>
 			</div>
 		</Page>

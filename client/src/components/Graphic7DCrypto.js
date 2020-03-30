@@ -15,19 +15,25 @@ const GraphicCrypto = () => {
 		theme: "light1",
 		animationEnabled: true,
 		exportEnabled: true,
+		backgroundColor: "black",
 		title: {
 			text: currency + "/USD (7 Days)"
 		},
 		axisX: {
-			valueFormatString: "DD-MM-YY  hh:mm"
+			valueFormatString: "DD-MM-YY  hh:mm",
+			labelFontColor: "white",
 		},
 		axisY: {
 			includeZero: false,
 			prefix: "$",
-			title: "Price (in USD)"
+			title: "Price (in USD)",
+			labelFontColor: "white",
 		},
 		data: [{
 			type: "line",
+			lineColor: "orange",
+			color: "orangered",
+			lineThickness: 2,
 			showInLegend: true,
 			name: currency,
 			yValueFormatString: "$###0.00",

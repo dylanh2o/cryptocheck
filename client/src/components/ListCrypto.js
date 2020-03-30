@@ -16,7 +16,7 @@ const ListCrypto = () => {
 
 					<List.Item>
 						<List.Item.Meta
-							avatar={<Avatar src={item.url}/>}
+							avatar={<Link to={'/Currency/' + item.asset_id}><Avatar src={item.url}/></Link>}
 							title={<Link to={'/Currency/' + item.asset_id}>{item.name}</Link>}
 						/>
 

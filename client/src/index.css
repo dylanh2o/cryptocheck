@@ -18,7 +18,7 @@ html, body {
 }
 
 .CadreHeader {
-    background-color: darkred;
+    background-color: orange;
     height: 8vh;
     display: flex;
     justify-content: space-around;
@@ -41,6 +41,6 @@ html, body {
     font-size: large;
 }
 .Menu :hover{
-    color: red;
+    color: orange;
 
 }

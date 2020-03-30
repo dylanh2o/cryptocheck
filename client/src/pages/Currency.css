@@ -1,0 +1,11 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.info{
+    display: flex;
+    text-align: left;
+}
+.infoGauche{
+padding-right: 10px;
+}

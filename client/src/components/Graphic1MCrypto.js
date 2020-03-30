@@ -15,6 +15,7 @@ const GraphicCrypto = () => {
 		theme: "light1",
 		animationEnabled: true,
 		exportEnabled: true,
+		backgroundColor: "black",
 		title: {
 			text: currency + "/USD (1 Month)"
 		},
@@ -28,6 +29,9 @@ const GraphicCrypto = () => {
 		},
 		data: [{
 			type: "line",
+			lineColor: "orange",
+			color: "orangered",
+			lineThickness: 2,
 			showInLegend: true,
 			name: currency,
 			yValueFormatString: "$###0.00",

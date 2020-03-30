@@ -42,6 +42,7 @@ const GraphicCryptoRealTime = () => {
 		theme: "light1",
 		animationEnabled: true,
 		exportEnabled: true,
+		backgroundColor: "black",
 		title: {
 			text: currency + "/USD (Now)"
 		},
@@ -54,7 +55,10 @@ const GraphicCryptoRealTime = () => {
 			title: "Price (in USD)"
 		},
 		data: [{
-			type: "spline",
+			type: "line",
+			lineColor: "orange",
+			color: "orangered",
+			lineThickness: 2,
 			showInLegend: true,
 
 			name: currency,

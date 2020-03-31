@@ -23,11 +23,10 @@ const GraphicCryptoRealTime = () => {
 			})
 		);
 		const onMessage = (message) => {
-			console.log(message.data);
 			const dataFromServer = JSON.parse(message.data);
 			if (dataFromServer.symbol_id === currencyWS) {
 
-				 dispatch(hydrateRealTimeCurrency({currency, data: dataFromServer}))
+				dispatch(hydrateRealTimeCurrency({currency, data: dataFromServer}))
 
 			}
 		};

@@ -64,9 +64,7 @@ export const currencySlice = createSlice({
 		error: null,
 		currency: []
 	},
-	reducers: {
-
-	},
+	reducers: {},
 	extraReducers: {
 		[fetchInfoCurrency.pending]: (state, action) => {
 			if (state.state !== 'loading') {
@@ -89,8 +87,6 @@ export const currencySlice = createSlice({
 
 	}
 });
-
-
 
 
 export default currencySlice.reducer;

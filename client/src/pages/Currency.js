@@ -15,7 +15,6 @@ const {TabPane} = Tabs;
 const Currency = () => {
 
 
-
 	return (
 
 

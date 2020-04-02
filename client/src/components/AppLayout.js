@@ -5,7 +5,7 @@ import Currency from '../pages/Currency';
 import Cryptocurrencies from '../pages/Cryptocurrencies';
 import SearchInput from "./SearchInput";
 import {AnimatePresence} from "framer-motion";
-import { fetchInfoCurrency} from "../pages/currencySlice";
+import {fetchInfoCurrency} from "../pages/currencySlice";
 import {useDispatch} from "react-redux";
 
 

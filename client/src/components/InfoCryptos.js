@@ -1,15 +1,15 @@
 import React from 'react';
 import {List, Avatar} from 'antd';
 import {useSelector} from "react-redux";
-import {useParams} from 'react-router-dom';
+import {Link} from "react-router-dom";
 
 var dataAssets = [];
-const InfoCrypto = () => {
-	const params = useParams();
+const InfoCryptos = () => {
+
 	const data = useSelector(state => state.currency.currency);
 	dataAssets = [];
 	for (var i = 0; i < data.length; i++) {
-		if (data[i].asset_id === params.id) {
+		if ((data[i].asset_id === 'BTC') || (data[i].asset_id === 'ETH')) {
 			dataAssets.push(data[i]);
 		}
 	}
@@ -25,22 +25,15 @@ const InfoCrypto = () => {
 					<List.Item>
 						<div>
 
-							<Avatar src={item.url}/>
-							<h1>    {item.name}({item.asset_id})</h1>
-
+							<Link to={'/Currency/' + item.asset_id}><Avatar src={item.url}/></Link>
+							<h2><Link to={'/Currency/' + item.asset_id}>    {item.name}({item.asset_id})</Link></h2>
 							<div className="info">
 								<div className="infoGauche">
-									Start:<br/>
-									Volume(1 jours):<br/>
 									Price:
 								</div>
 								<div>
-									{item.data_start}<br/>
-									{item.volume_1day_usd} USD<br/>
 									{Math.round(item.price_usd)} USD - {Math.round(item.price_usd / 1.06751)} CHF
 								</div>
-
-
 							</div>
 						</div>
 					</List.Item>
@@ -50,4 +43,4 @@ const InfoCrypto = () => {
 	)
 };
 
-export default InfoCrypto;
+export default InfoCryptos;

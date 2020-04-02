@@ -7,9 +7,9 @@ import 'antd/dist/antd.min.css';
 
 const App = () => (
 	<>
-	<Switch>
-		<Route path="/" component={AppLayout}/>
-	</Switch>
+		<Switch>
+			<Route path="/" component={AppLayout}/>
+		</Switch>
 	</>
 );
 

@@ -20,12 +20,14 @@ const GraphicCrypto = () => {
 			text: currency + "/USD (1 Day)"
 		},
 		axisX: {
-			valueFormatString: "DD-MM-YY hh:mm"
+			valueFormatString: "DD-MM-YY hh:mm",
+			labelFontColor: "white"
 		},
 		axisY: {
 			includeZero: false,
 			prefix: "$",
-			title: "Price (in USD)"
+			title: "Price (in USD)",
+			labelFontColor: "white"
 		},
 		data: [{
 			type: "line",

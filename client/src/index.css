@@ -24,10 +24,12 @@ html, body {
     justify-content: space-around;
     align-items: center;
 }
+
 .Logo {
     font-size: 25px;
     color: white;
 }
+
 .Menu {
     background-color: black;
     height: 8vh;
@@ -40,7 +42,13 @@ html, body {
     color: white;
     font-size: large;
 }
-.Menu :hover{
+
+.Menu a:hover {
     color: orange;
+
+}
+
+.Menu a:active {
+    color: orangered;
 
 }

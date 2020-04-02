@@ -7,7 +7,6 @@ import './Cryptocurrencies.css';
 const Cryptocurrencies = () => {
 
 
-
 	return (
 
 

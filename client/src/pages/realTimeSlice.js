@@ -1,7 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 
-
 export const realTimeSlice = createSlice({
 	name: 'RealTime',
 	initialState: {
@@ -14,18 +13,16 @@ export const realTimeSlice = createSlice({
 		ZEC: [],
 	},
 	reducers: {
-		hydrateRealTimeCurrency: (state,action) =>{
-	state[action.payload.currency].push(action.payload.data);
-}
+		hydrateRealTimeCurrency: (state, action) => {
+			state[action.payload.currency].push(action.payload.data);
+		}
 	}
-
-
 
 
 });
 
 
-export const  { hydrateRealTimeCurrency} = realTimeSlice.actions;
+export const {hydrateRealTimeCurrency} = realTimeSlice.actions;
 
 export default realTimeSlice.reducer;
 
